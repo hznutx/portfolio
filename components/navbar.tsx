@@ -8,23 +8,25 @@ import clsx from 'clsx';
 import {siteConfig} from '@/config/site';
 import {ThemeSwitch} from '@/components/theme-switch';
 import {TwitterIcon, GithubIcon, DiscordIcon, HeartFilledIcon, Logo} from '@/components/icons';
+import {kanit} from '@/app/layout';
 
 export const Navbar = () => {
   return (
     <NextUINavbar
       maxWidth='xl'
-      position='sticky'>
+      position='sticky'
+      className={clsx(kanit.className)}>
       <NavbarContent
-        className='basis-1/5 sm:basis-full'
+        className={'basis-1/5 sm:basis-full'}
         justify='start'>
         <NavbarBrand
           as='li'
           className='gap-3 max-w-fit'>
           <NextLink
-            className='flex justify-start items-center gap-1'
+            className='flex justify-start items-center gap-2'
             href='/'>
-            <Logo />
-            <p className='font-bold text-inherit'>HZNUT</p>
+            <Logo size={24} />
+            <p className='font-bold text-inherit'>Numerlogy</p>
           </NextLink>
         </NavbarBrand>
         <ul className='hidden lg:flex gap-4 justify-start ml-2'>

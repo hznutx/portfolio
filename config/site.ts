@@ -1,8 +1,8 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  name: 'Next.js + NextUI',
-  description: 'Make beautiful websites regardless of your design experience.',
+  name: 'เชคเบอร์มงคล',
+  description: 'เบอร์มงคลที่ช่วยให้คุณประสบความสำเร็จ',
   navItems: [
     {
       label: 'Home',
@@ -10,8 +10,8 @@ export const siteConfig = {
     },
 
     {
-      label: 'About',
-      href: '/about',
+      label: 'เชคเบอร์มงคล',
+      href: '/check',
     },
   ],
   navMenuItems: [
