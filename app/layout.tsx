@@ -52,8 +52,8 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
             <Navbar />
             <main className={clsx(kanit.className, 'container mx-auto max-w-7xl pt-16 px-6 flex-grow')}>{children}</main>
             <footer className='w-full flex items-center justify-center py-3'>
-              <span className='text-xs text-default-600'>Copyright © 2023</span>
-              <p className='text-xs text-cyan-700'>DevGotGun all rights reserved</p>
+              <span className='text-xs text-default-600'>Copyright © 2024</span>
+              <p className='text-xs text-cyan-700 ml-1'>hznutx all rights reserved</p>
             </footer>
           </div>
         </Providers>

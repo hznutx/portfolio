@@ -1,8 +1,8 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  name: 'เชคเบอร์มงคล',
-  description: 'เบอร์มงคลที่ช่วยให้คุณประสบความสำเร็จ',
+  name: 'hznutx',
+  description: 'work with Frontend Developer - Nuttakarn P.,BKK Thailand',
   navItems: [
     {
       label: 'Home',
@@ -10,8 +10,8 @@ export const siteConfig = {
     },
 
     {
-      label: 'เชคเบอร์มงคล',
-      href: '/check',
+      label: 'About',
+      href: '/about',
     },
   ],
   navMenuItems: [

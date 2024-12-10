@@ -17,16 +17,16 @@ export const Navbar = () => {
       position='sticky'
       className={clsx(kanit.className)}>
       <NavbarContent
-        className={'basis-1/5 sm:basis-full'}
+        className='basis-1/5 sm:basis-full'
         justify='start'>
         <NavbarBrand
           as='li'
           className='gap-3 max-w-fit'>
           <NextLink
-            className='flex justify-start items-center gap-2'
+            className='flex justify-start items-center gap-1'
             href='/'>
-            <Logo size={24} />
-            <p className='font-bold text-inherit'>Numerlogy</p>
+            <Logo />
+            <p className='font-bold text-inherit'>HZNUT</p>
           </NextLink>
         </NavbarBrand>
         <ul className='hidden lg:flex gap-4 justify-start ml-2'>
