@@ -1,4 +1,4 @@
-import {AnimateHeader} from './svg/AnimateHeader';
+import {AnimateHeader} from '../svg/AnimateHeader';
 
 const HeroSection: React.FC = () => {
   return <AnimateHeader />;
