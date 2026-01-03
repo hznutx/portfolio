@@ -1,14 +1,14 @@
-import {Navbar as NextUINavbar, NavbarContent, NavbarMenu, NavbarMenuToggle, NavbarBrand, NavbarItem, NavbarMenuItem} from '@nextui-org/navbar';
-import {Button} from '@nextui-org/button';
-import {Link} from '@nextui-org/link';
-import {link as linkStyles} from '@nextui-org/theme';
+import { Navbar as NextUINavbar, NavbarContent, NavbarMenu, NavbarMenuToggle, NavbarBrand, NavbarItem, NavbarMenuItem } from "@heroui/navbar";
+import { Button } from "@heroui/button";
+import { Link } from "@heroui/link";
+import { link as linkStyles } from "@heroui/theme";
 import NextLink from 'next/link';
 import clsx from 'clsx';
 
-import {siteConfig} from '@/config/site';
-import {ThemeSwitch} from '@/components/theme-switch';
-import {TwitterIcon, GithubIcon, DiscordIcon, HeartFilledIcon, Logo} from '@/components/icons';
-import {kanit} from '@/app/layout';
+import { siteConfig } from '@/config/site';
+import { ThemeSwitch } from '@/components/theme-switch';
+import { TwitterIcon, GithubIcon, DiscordIcon, HeartFilledIcon, Logo } from '@/components/svg/icons';
+import { kanit } from '@/app/layout';
 
 export const Navbar = () => {
   return (
@@ -23,17 +23,17 @@ export const Navbar = () => {
           as='li'
           className='gap-3 max-w-fit'>
           <NextLink
-            className='flex justify-start items-center gap-1'
+            className='flex text-foreground justify-start items-center gap-1'
             href='/'>
             <Logo />
-            <p className='font-bold text-inherit'>HZNUT</p>
+            <p className='font-bold'>HZNUT</p>
           </NextLink>
         </NavbarBrand>
         <ul className='hidden lg:flex gap-4 justify-start ml-2'>
-          {siteConfig.navItems.map((item) => (
-            <NavbarItem key={item.href}>
+          {siteConfig.navItems.map((item,i) => (
+            <NavbarItem key={i}>
               <NextLink
-                className={clsx(linkStyles({color: 'foreground'}), 'data-[active=true]:text-primary data-[active=true]:font-medium')}
+                className={clsx(linkStyles({ color: 'foreground' }), 'data-[active=true]:text-primary data-[active=true]:font-medium')}
                 color='foreground'
                 href={item.href}>
                 {item.label}

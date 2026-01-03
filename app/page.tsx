@@ -1,6 +1,6 @@
 import {
   HeroSection,
-  InfoSection,
+  About,
   TrackNumberSection,
 } from "@/components/section";
 
@@ -9,7 +9,7 @@ const HomePage = () => {
     <div className="relative mx-auto container max-w-screen-xxl">
       <HeroSection />
       <TrackNumberSection />
-      <InfoSection />
+      <About />
     </div>
   );
 };

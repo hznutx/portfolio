@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import {Kanit} from 'next/font/google';
 import {Toaster} from 'react-hot-toast';
 
-import {Providers} from './providers';
+import Providers from "./providers";
 
 import {siteConfig} from '@/config/site';
 import {fontSans} from '@/config/fonts';
@@ -50,7 +50,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
           />
           <div className='relative flex flex-col h-screen'>
             <Navbar />
-            <main className={clsx(kanit.className, 'w-full flex-grow')}>{children}</main>
+            <main className={clsx(kanit.className, 'w-full flex-grow pb-10')}>{children}</main>
             <footer className='w-full flex items-center justify-center py-3'>
               <span className='text-xs text-default-600'>Copyright © 2024</span>
               <p className='text-xs text-cyan-700 ml-1'>hznutx all rights reserved</p>

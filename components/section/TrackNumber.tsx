@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import SectionFadeIn from "./SectionFadeIn";
 
 const useCounter = (
   targetValue: number,
@@ -63,13 +64,8 @@ const TrackNumberSection: React.FC = () => {
   const teamMembers = useCounter(37, 2000, isVisible);
 
   return (
-    <section
-      ref={sectionRef}
-      className={`${
-        isVisible ? "animate-slide-up" : "opacity-0 translate-y-10"
-      } py-10 sm:py-16 lg:py-24 transition-transform duration-800`}
-    >
-      <div className="max-w-5xl px-4 mx-auto sm:px-6 lg:px-8">
+   <SectionFadeIn sectionRef={sectionRef}>
+      <div className="pt-40 lg:pt-0 max-w-5xl px-4 mx-auto sm:px-6 lg:px-8">
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">
             Numbers tell our story
@@ -122,7 +118,7 @@ const TrackNumberSection: React.FC = () => {
           </div>
         </div>
       </div>
-    </section>
+    </SectionFadeIn>
   );
 };
 

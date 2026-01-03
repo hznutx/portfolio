@@ -1,6 +1,12 @@
-const InfoSection: React.FC = () => {
+'use client'
+import { useRef } from "react";
+import SectionFadeIn from "./SectionFadeIn";
+
+const About: React.FC = () => {
+  const sectionRef = useRef<HTMLDivElement>(null);
+
   return (
-    <section id="about" className="py-10 bg-white sm:py-16 lg:py-24">
+    <SectionFadeIn id="about" sectionRef={sectionRef}><div className="py-10 bg-white sm:py-16 lg:py-24">
       <div className="max-w-4xl px-4 mx-auto sm:px-6 lg:px-8 pt-80">
         <div className="md:flex md:items-center md:justify-center md:space-x-14">
           <div className="relative flex-shrink-0 w-48 h-48">
@@ -29,7 +35,8 @@ const InfoSection: React.FC = () => {
           </div>
         </div>
       </div>
-    </section>
+    </div>
+    </SectionFadeIn>
   );
 };
-export default InfoSection;
+export default About;
