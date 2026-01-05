@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { createBrowserClient } from "@supabase/ssr";
 import { CardProject } from "@/components/elements";
+import { useRouter } from "next/navigation";
 
 const supabase = createBrowserClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -10,6 +11,7 @@ const supabase = createBrowserClient(
 );
 
 export default function Docs() {
+  const router = useRouter()
   const [data, setData] = useState<any[]>([]);
 
   useEffect(() => {
@@ -18,19 +20,16 @@ export default function Docs() {
     });
   }, []);
 
-  console.log('data:', data)
 
   return (
 
-    <div className="relative py-16 lg:py-24 container mx-auto max-w-6xl grid items-center grid-cols-1 gap-12 lg:grid-cols-2">
-      {data.map(item => (
+    <div className="relative p-5 py-16 lg:py-24 container mx-auto max-w-6xl w-auto grid place-content-center grid-cols-1 gap-12 md:grid-flow-col">
+      {data?.map(item => (
         <CardProject
-          key={item.id}
-          title={item.name}
-          src={'https://cdn.pixabay.com/photo/2025/12/16/17/04/junco-10018717_1280.jpg'}
-          content={item.code}
-          button="Read More"
-        />
+          key={item?.id}
+          title={item?.name}
+          src={item?.image}
+          content={item?.description} onClick={()=>router.push(item?.url)} />
       ))}
     </div>
 

@@ -46,7 +46,7 @@ const HeroSection: React.FC = () => {
           <div className='relative md:flex-row flex-col  flex max-w-screen-md'>
               <AnimateWindowBox width={280} title='Backend Knowledge' typing='Active learning...' detail={<div>{backendStack.map((tool, i) => <p key={i}>{tool}</p>)}
               </div>} />
-            <div className="absolute lg:w-[390px] lg:bottom-[-210] bottom-[-320] right-0">
+            <div className="absolute lg:w-[390px] lg:-bottom-[210] -bottom-[320] right-0">
               <AnimateCursorTextSelected />
             </div>
           </div>

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import SectionFadeIn from "./SectionFadeIn";
+import { supabase } from "@/utils/supabase/client";
 
 const useCounter = (
   targetValue: number,
@@ -36,6 +37,14 @@ const useCounter = (
 const TrackNumberSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+   const [statData, setStatData] = useState([] as any[]);
+
+    useEffect(() => {
+      supabase.from("stat").select('*').then(({ data }) => {
+        setStatData(data ?? []);
+      });
+    }, []);
+
 
   const handleIntersection = (entries: IntersectionObserverEntry[]) => {
     const [entry] = entries;
@@ -59,9 +68,9 @@ const TrackNumberSection: React.FC = () => {
     };
   }, []);
 
-  const yearsInBusiness = useCounter(20, 2000, isVisible);
-  const projectsDelivered = useCounter(4821, 2000, isVisible);
-  const teamMembers = useCounter(37, 2000, isVisible);
+  const yearsInBusiness = useCounter(statData[0]?.count, 2000, isVisible);
+  const projectsDelivered = useCounter(statData[1]?.count, 2000, isVisible);
+  const teamMembers = useCounter(statData[2]?.count, 2000, isVisible);
 
   return (
    <SectionFadeIn sectionRef={sectionRef}>

@@ -29,7 +29,7 @@ export const Navbar = () => {
             <p className='font-bold'>HZNUT</p>
           </NextLink>
         </NavbarBrand>
-        <ul className='hidden lg:flex gap-4 justify-start ml-2'>
+        <ul className='hidden md:flex gap-4 justify-start ml-2'>
           {siteConfig.navItems.map((item,i) => (
             <NavbarItem key={i}>
               <NextLink
