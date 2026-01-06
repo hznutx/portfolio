@@ -20,7 +20,7 @@ export function CardProject({
 }: ICard) {
   return (
     <div className="relative hover:shadow-xl transition-all duration-300 hover:-translate-y-1 w-80 rounded-xl shadow-lg">
-      <div className="relative mx-4 -mt-6 h-40 overflow-hidden rounded-xl bg-clip-border shadow-lg group">
+      <div className="relative mx-4 -mt-8 h-44 overflow-hidden rounded-xl bg-clip-border shadow-lg group">
         <Image
           src={src}
           alt={title}
