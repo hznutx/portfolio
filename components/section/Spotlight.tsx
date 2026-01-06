@@ -23,7 +23,7 @@ export default function Spotlight() {
 
   return (
 
-    <div className="relative p-5 py-16 lg:py-24 container mx-auto w-fit max-w-6xl grid place-items-center place-content-center grid-cols-1 gap-8 gap-y-16 md:grid-flow-col">
+    <div className="relative p-5 py-16 lg:py-24 container mx-auto max-w-6xl w-auto grid place-content-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-20">
       {data?.map(item => (
         <CardProject
           key={item?.id}

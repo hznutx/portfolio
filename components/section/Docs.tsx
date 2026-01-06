@@ -4,32 +4,32 @@ import { useEffect, useState } from "react";
 import { createBrowserClient } from "@supabase/ssr";
 import { CardProject } from "@/components/elements";
 import { useRouter } from "next/navigation";
+import { CardDocument, IDocsMenu } from "../elements/Card";
 
 const supabase = createBrowserClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 );
 
+
 export default function Docs() {
   const router = useRouter()
-  const [data, setData] = useState<any[]>([]);
+  const [data, setData] = useState<IDocsMenu[]>([]);
 
   useEffect(() => {
-    supabase.from("projects").select("*").then(({ data }) => {
-      setData(data ?? []);
+    supabase.from("destination").select("*").then(({ data }) => {
+      setData(data as IDocsMenu[] ?? []);
     });
   }, []);
 
 
   return (
 
-    <div className="relative p-5 py-16 lg:py-24 container mx-auto max-w-6xl w-auto grid place-content-center grid-cols-1 gap-12 md:grid-flow-col">
+    <div className="relative p-5 py-16 lg:py-24 container mx-auto max-w-6xl w-auto grid place-content-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-20">
       {data?.map(item => (
-        <CardProject
+        <CardDocument
           key={item?.id}
-          title={item?.name}
-          src={item?.image}
-          content={item?.description} onClick={()=>router.push(item?.url)} />
+          description={item?.description} submenu={item.submenu} url={item.url} />
       ))}
     </div>
 
