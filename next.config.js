@@ -2,7 +2,7 @@
 
 module.exports = {
   pageExtensions: ['mdx', 'md', 'jsx', 'js', 'tsx', 'ts'],
-   images: {
-    remotePatterns: [new URL('https://cdn.pixabay.com/photo/**'),new URL('https://i.ibb.co/**')],
+  images: {
+    remotePatterns: [new URL('https://cdn.pixabay.com/photo/**'), new URL('https://i.ibb.co/**'), new URL('https://images.unsplash.com/**')],
   },
 };

@@ -1,5 +1,3 @@
-
-
 .animate-slide-up {
   animation: slide-up 800ms ease-in-out;
 }
@@ -11,7 +9,6 @@
 }
 
 @keyframes typeAndDelete {
-
   0%,
   10% {
     width: 0;
@@ -30,12 +27,11 @@
 }
 
 .window-box {
-
   .terminal-loader {
     border: 0.1em solid #333;
     background-color: #1a1a1a;
     color: #0f0;
-    font-family: "Courier New", Courier, monospace;
+    font-family: 'Courier New', Courier, monospace;
     font-size: 1em;
     padding: 1.5em 1em;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -99,14 +95,13 @@
       blinkCursor 0.5s step-end infinite alternate;
     margin-top: 1.5em;
   }
-
 }
 
 /*cursor-animate-box*/
 
 .ui-ux {
-    color: white;
-    mix-blend-mode: difference;
+  color: white;
+  mix-blend-mode: difference;
 }
 
 #cursor,
@@ -165,4 +160,15 @@
   100% {
     opacity: 1;
   }
+}
+
+.zoom-in {
+  cursor: pointer;
+}
+.zoom-in:hover {
+  transform: scale(1.15);
+}
+.convert-text {
+  color: white;
+  mix-blend-mode: difference;
 }

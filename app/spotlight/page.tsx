@@ -1,5 +1,11 @@
-import { Spotlight } from "@/components/section";
+import {Loading} from '@/components/elements';
+import {Spotlight} from '@/components/section';
+import {Suspense} from 'react';
 
 export default function SpotlightPage() {
-  return <Spotlight />;
+  return (
+    <Suspense fallback={<Loading />}>
+      <Spotlight />
+    </Suspense>
+  );
 }

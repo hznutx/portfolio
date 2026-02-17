@@ -1,12 +1,24 @@
 'use client';
-import Image from "next/image";
-import { SnipText } from "./Snippet";
-import Link from "next/link";
+import Image from 'next/image';
+import {SnipText} from './Snippet';
+import Link from 'next/link';
+import {ArrowIcon} from '../svg';
+import {Button, Card, CardFooter, useDisclosure} from '@heroui/react';
+import {ModalPopup} from './Modal';
 
-export interface IComponentDisplay { id?: number; name: string; code: string; }
-export interface IDocsMenu { id?: number; submenu: string; description: string; url: string }
+export interface IComponentDisplay {
+  id?: number;
+  name: string;
+  code: string;
+}
+export interface IDocsMenu {
+  id?: number;
+  submenu: string;
+  description: string;
+  url: string;
+}
 
-interface ICard {
+export interface ICard {
   title: string;
   content: string;
   src: string;
@@ -14,93 +26,92 @@ interface ICard {
   onClick?: () => void;
 }
 
-export function CardProject({
-  title,
-  content,
-  src,
-  button = "Read More", onClick
-}: ICard) {
+export function CardProject({title, content, src, button = 'Read More', onClick}: ICard) {
+  const {onOpen, onClose, isOpen} = useDisclosure();
+  const getModalProps = {content, title, src, onOpen, onClose, isOpen, onClick};
   return (
-    <div className="relative hover:shadow-xl transition-all duration-300 hover:-translate-y-1 w-80 rounded-xl shadow-lg">
-      <div className="relative mx-4 -mt-8 h-44 overflow-hidden rounded-xl bg-clip-border shadow-lg group">
+    <>
+      <Card
+        isFooterBlurred
+        className='zoom-in relative aspect-[1.6/1] bg-clip-border border-none'
+        radius='lg'
+      >
         <Image
           src={src}
           alt={title}
-          fill className="object-cover"
+          fill
+          className='object-cover'
         />
-      </div>
-      <div className="p-6">
-        <h5 className="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal text-gray-900 antialiased group-hover:text-blue-600 transition-colors duration-300">{title}</h5>
-        <p className="line-clamp-4 leading-5 text-sm font-light h-20 text-gray-700 whitespace-break-spaces">{content}</p>
-      </div>
-      <div className="p-6 pt-0 space-y-2">
-        <button onClick={onClick} className="group relative w-full inline-flex items-center justify-center px-6 py-3 text-white rounded-lg bg-gradient-to-l from-primary to-secondary hover:opacity-90 shadow-lg shadow-blue-500/30 hover:shadow-blue-500/40 transition-all duration-300 hover:-translate-y-0.5">
-          {button}
-        </button>
-      </div>
-    </div>
+        <CardFooter className='justify-between bg-black/20 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 z-10'>
+          <p className='convert-text text-sm w-full'>{title}</p>
+          <Button
+            className='text-tiny px-4 py-1 text-white bg-black/20'
+            color='default'
+            radius='lg'
+            size='sm'
+            variant='flat'
+            onPress={onOpen}
+          >
+            {button}
+          </Button>
+        </CardFooter>
+      </Card>
+      <ModalPopup {...getModalProps} />
+    </>
   );
 }
 
 export function htmlClassToClassName(html: string): string {
-  return html.replace(/\bclass="([^"]*)"/g, 'className="$1"')
+  return html.replace(/\bclass="([^"]*)"/g, 'className="$1"');
 }
 
-
-export const CardComponent: React.FC<IComponentDisplay> = ({ code, name, id }) => {
-
-  const codeSet = htmlClassToClassName(code)
+export const CardSnippet: React.FC<IComponentDisplay> = ({code, name, id}) => {
+  const codeSet = htmlClassToClassName(code);
 
   return (
-    <div id="components-sandbox">
-      <p className="mb-3">{name}</p>
-      <div className="shadow-sm rounded-xl grid container  mx-auto grid-cols-1 gap-3 place-content-center place-items-end md:grid-cols-2">
-        <div className="w-full max-w-96">
-          <div id="ui-preview" className="h-80 w-full flex justify-center items-center border border-default-50 rounded-2xl">
-            < >
-
-              <div  className="relative" dangerouslySetInnerHTML={{ __html: (code) }} />
+    <div
+      id='components-sandbox'
+      className='max-w-4xl mx-auto w-full'
+    >
+      <p className='mb-3'>{name}</p>
+      <div className='w-auto rounded-xl grid container mx-auto grid-cols-1 gap-3 place-content-center place-items-center md:grid-cols-2'>
+        <div className='w-full max-w-4xl'>
+          <div
+            id='ui-preview'
+            className='h-80 w-full flex justify-center items-center border border-default-50 rounded-2xl p-[10%]'
+          >
+            <>
+              <div
+                className='relative scale-75 m-[10%] group'
+                dangerouslySetInnerHTML={{__html: code}}
+              />
             </>
           </div>
         </div>
-        <div className="w-full md:w-96">
-          <SnipText code={codeSet} /></div>
+        <div className='w-full md:w-96'>
+          <SnipText code={codeSet} />
+        </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export const CardDocument: React.FC<IDocsMenu> = ({ description, submenu, url }) => {
+export const CardDocument: React.FC<IDocsMenu> = ({description, submenu, url}) => {
   return (
-    <div
-      className="h-[16em] w-[18em] border-2 border-[rgba(75,30,133,0.5)] rounded-[1.5em] bg-gradient-to-br from-[rgba(75,30,133,1)] to-[rgba(75,30,133,0.01)] text-white font-nunito p-[1em] flex justify-center items-left flex-col gap-[0.75em] backdrop-blur-[12px]"
-    >
-      <div>
-        <h1 className="text-[2em] font-medium">{submenu}</h1>
-        <p className="text-[0.85em] line-clamp-2">
-          {description}        </p>
-      </div>
-      <Link href={url}>
-        <button
-          className="h-fit w-fit px-[1em] py-[0.25em] border-[1px] rounded-full flex justify-center items-center gap-[0.5em] overflow-hidden group hover:translate-y-[0.125em] duration-200 backdrop-blur-[12px]"
-        >
-          <p>Read More..</p>
-          <svg
-            className="w-6 h-6 group-hover:translate-x-[10%] duration-300"
-            stroke="currentColor"
-            stroke-width="1"
-            viewBox="0 0 24 24"
-            fill="white"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
-              stroke-linejoin="round"
-              stroke-linecap="round"
-            ></path>
-          </svg>
-        </button></Link>
-    </div>
-  )
-}
+    <div className='cursor-pointer w-full aspect-[4/2] bg-background hover:shadow-lg shadow m-auto rounded-[1em] overflow-hidden relative group p-2 z-0'>
+      <div className='circle absolute h-[6em] aspect-square -top-[2.5em] -right-[2.5em] rounded-full bg-pink-700 group-hover:scale-[1200%] duration-500 z-[-1] op' />
 
+      <button
+        onClick={() => window.open(url, '_self')}
+        className='absolute bottom-[1em] px-3 font-light group-hover:text-[white] duration-500'
+      >
+        <p className='relative text-[0.8em] duration-300 text-left line-clamp-2 h-14 leading-6 mb-4'>{description}</p>
+        <p className='hover:font-normal w-full inline-flex gap-1 items-center'>
+          more info <ArrowIcon />
+        </p>
+      </button>
+
+      <h1 className='z-20 px-2 font-bold group-hover:text-[white] duration-500 text-[1.4em]'>{submenu}</h1>
+    </div>
+  );
+};
