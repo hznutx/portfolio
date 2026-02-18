@@ -1,9 +1,9 @@
-import {heroui} from "@heroui/theme";
+import {heroui} from '@heroui/theme';
 import {color} from 'framer-motion';
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./components/**/*.{js,ts,jsx,tsx,mdx}', './app/**/*.{js,ts,jsx,tsx,mdx}', "./node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}"],
+  content: ['./components/**/*.{js,ts,jsx,tsx,mdx}', './app/**/*.{js,ts,jsx,tsx,mdx}', './node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}'],
   theme: {
     screens: {
       xs: '375px',
@@ -24,14 +24,10 @@ module.exports = {
         },
         initial: '#CCCCCC',
         prime: '#465670',
-        primary: '#4c84b5',
+        primary: '#7EA1FF',
         default: '#8DC1EF',
-        secondary_1: '#007991',
-        secondary_2: '#4d9ee6',
         secondary: '#A14686',
-        warning_0: '#f9d29f',
         warning: '#F6B969',
-        warning_1: '#f29a26',
         error: '#F24C44',
       },
     },

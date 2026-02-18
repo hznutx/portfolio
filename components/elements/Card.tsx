@@ -1,15 +1,23 @@
 'use client';
 import Image from 'next/image';
 import {SnipText} from './Snippet';
-import Link from 'next/link';
 import {ArrowIcon} from '../svg';
-import {Button, Card, CardFooter, useDisclosure} from '@heroui/react';
+import {Button, Card, CardFooter, Chip, useDisclosure} from '@heroui/react';
 import {ModalPopup} from './Modal';
+import {codeTypeMatch, htmlClassToClassName} from '@/utils';
+
+export enum ECodeType {
+  TAILWIND = 'TAILWIND',
+  CSS = 'CSS',
+  JAVASCRIPT = 'JAVASCRIPT',
+  TYPESCRIPT = 'TYPESCRIPT',
+}
 
 export interface IComponentDisplay {
   id?: number;
   name: string;
   code: string;
+  codeType: ECodeType;
 }
 export interface IDocsMenu {
   id?: number;
@@ -61,32 +69,34 @@ export function CardProject({title, content, src, button = 'Read More', onClick}
   );
 }
 
-export function htmlClassToClassName(html: string): string {
-  return html.replace(/\bclass="([^"]*)"/g, 'className="$1"');
-}
-
-export const CardSnippet: React.FC<IComponentDisplay> = ({code, name, id}) => {
+export const CardSnippet: React.FC<IComponentDisplay> = ({code, name, codeType}) => {
   const codeSet = htmlClassToClassName(code);
+  const {tagCode, bgColor, textColor, CodeIcon} = codeTypeMatch(codeType);
 
   return (
     <div
       id='components-sandbox'
       className='max-w-4xl mx-auto w-full'
     >
-      <p className='mb-3'>{name}</p>
-      <div className='w-auto rounded-xl grid container mx-auto grid-cols-1 gap-3 place-content-center place-items-center md:grid-cols-2'>
-        <div className='w-full max-w-4xl'>
+      <div className='mb-3 inline-flex items-center w-full justify-between xl:pr-[65px] gap-2'>
+        <p>{name}</p>
+        <Chip
+          size='sm'
+          style={{backgroundColor: bgColor, color: textColor}}
+          endContent={<CodeIcon />}
+        >
+          {tagCode}
+        </Chip>
+      </div>
+      <div className='w-auto rounded-xl grid container mx-auto grid-cols-1 gap-3 place-content-center md:grid-cols-2 max-w-5xl'>
+        <div
+          id='ui-preview'
+          className='h-80 relative w-full max-w-5xl flex justify-center items-center border border-default-50 rounded-2xl p-[10%]'
+        >
           <div
-            id='ui-preview'
-            className='h-80 w-full flex justify-center items-center border border-default-50 rounded-2xl p-[10%]'
-          >
-            <>
-              <div
-                className='relative scale-75 m-[10%] group'
-                dangerouslySetInnerHTML={{__html: code}}
-              />
-            </>
-          </div>
+            className='relative scale-75 m-[5%] group'
+            dangerouslySetInnerHTML={{__html: code}}
+          />
         </div>
         <div className='w-full md:w-96'>
           <SnipText code={codeSet} />
@@ -98,8 +108,8 @@ export const CardSnippet: React.FC<IComponentDisplay> = ({code, name, id}) => {
 
 export const CardDocument: React.FC<IDocsMenu> = ({description, submenu, url}) => {
   return (
-    <div className='cursor-pointer w-full aspect-[4/2] bg-background hover:shadow-lg shadow m-auto rounded-[1em] overflow-hidden relative group p-2 z-0'>
-      <div className='circle absolute h-[6em] aspect-square -top-[2.5em] -right-[2.5em] rounded-full bg-pink-700 group-hover:scale-[1200%] duration-500 z-[-1] op' />
+    <div className='cursor-pointer w-full border-gray-300/20 border aspect-[4/2] bg-background hover:shadow-lg shadow m-auto rounded-[1em] overflow-hidden relative group p-2 z-0'>
+      <div className='circle absolute h-[6em] aspect-square -top-[2.5em] -right-[2.5em] rounded-full bg-primary group-hover:scale-[1200%] duration-500 z-[-1] op' />
 
       <button
         onClick={() => window.open(url, '_self')}
